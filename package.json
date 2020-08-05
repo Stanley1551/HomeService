@@ -1,0 +1,21 @@
+{
+  "name": "homeservice",
+  "version": "1.0.0",
+  "description": "Back-end component for the Home app.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Peter Lorincz",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "better-sqlite3": "^7.0.1",
+    "express": "^4.17.1",
+    "uuid": "^8.1.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
