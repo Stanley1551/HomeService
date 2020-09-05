@@ -15,14 +15,14 @@ const posts = {name: 'posts', columns : [
     {colName: 'id', type: 'INTEGER PRIMARY KEY AUTOINCREMENT'},
     {colName: 'userid', type: 'INTEGER'},
     {colName: 'text', type: 'TEXT'},
-    {colName: 'postedAt', type:'TEXT'},
+    {colName: 'postedAt', type:'INTEGER'},
 ]};
 const comments = {name: 'comments', columns: [
     {colName: 'id', type: 'INTEGER PRIMARY KEY AUTOINCREMENT'},
     {colName: 'userid', type: 'INTEGER'},
     {colName: 'postid', type: 'INTEGER'},
     {colName: 'text', type:'TEXT'},
-    {colName: 'commentedAt', type:'TEXT'},
+    {colName: 'commentedAt', type:'INTEGER'},
 ]};
 
 

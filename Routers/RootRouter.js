@@ -7,7 +7,7 @@ const appRouter = require('./AppRouter');
 
 rootRouter.use('/ping',pingRouter);
 rootRouter.use('/auth',authRouter);
-rootRouter.use('/app',(req, res, next) => Authorization.authorize(req, res, next));
-rootRouter.use('/app', appRouter);
+rootRouter.use('/app',(req, res, next) => Authorization.authorize(req, res, next), appRouter);
+//rootRouter.use('/app', appRouter);
 
 module.exports = rootRouter;

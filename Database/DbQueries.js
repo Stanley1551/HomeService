@@ -20,6 +20,21 @@ module.exports = {
         return retVal;
     },
 
+    getUserByToken: function(token, callback){
+        const dbOp = require('./DbOperations');
+        dbOp.wrapper.select({table: 'tokens', fields: ['userid'], where: {token: token, validity: 1}, limit:1},
+        function(err, rows) {
+            if(!rows || rows.length == 0){
+                callback(false);
+            }else{
+                dbOp.wrapper.select({table: 'users', fields:['id','username'], where: {id: rows[0].userid}},
+                function(err, rows) {
+                    callback(rows[0]);
+                });
+            }
+        });
+    },
+
     createUser : function(name, hash){
         const dbOp = require('./DbOperations');
         let map = new Map();
@@ -78,13 +93,28 @@ module.exports = {
         return token;
     },
 
-    retrievePosts: function(maxNumber){
+    retrievePosts: function(maxNumber, callback){
         const dbOp = require('./DbOperations');
-        dbOp.wrapper.select({table: 'posts', limit: maxNumber, fields: ['userid', 'text', 'postedAt'],
-        order: 'postedAt desc'}, function(err, posts) {
-            return posts;
+        dbOp.wrapper.select("select posts.id, posts.text as text, posts.postedAt as postedAt, users.username as username, count(comments.postid) as countofComments from posts left join comments on posts.id = comments.postid inner join users on posts.userid = users.id group by posts.id order by posts.postedAt desc limit "+maxNumber,
+        function(err, posts) {
+            if(err){
+                console.log(err);
+            }
+            callback(posts);
         });
     },
+
+    createPost: function(userid, text, callback){
+        const dbOp = require('./DbOperations');
+        let now = Date.now();
+        dbOp.wrapper.insert('posts', {userid: userid, text: text, postedAt: now}, function(err, id) {
+            if(id == 0){
+                callback(false);
+            }else{
+                callback(true);
+            }
+        });
+    }
 }
 
 function generateGuidToken(){

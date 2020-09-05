@@ -18,10 +18,15 @@ Content-Type: application/json
     "password": "fasz12345"
 }
 ###
-GET http://localhost:3000/app HTTP/1.1
+GET http://localhost:3000/app/dashboard HTTP/1.1
+Content-Type: application/json
+token: 7e59e919-b737-4c33-b475-97428929f7c7
+
+###
+PUT http://localhost:3000/app/dashboard
 Content-Type: application/json
 token: 7e59e919-b737-4c33-b475-97428929f7c7
 
 {
-    "request: ": "get"
+ "text": "elso post"
 }

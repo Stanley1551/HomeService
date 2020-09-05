@@ -3,5 +3,7 @@ module.exports = {
     UsernameAlreadyExists : 2,
     InvalidUserName : 3,
     InvalidPassword : 4,
-    UserCreationFailed :5
+    UserCreationFailed :5,
+    InvalidPostCreation: 6,
+    FailedToCreatePost: 7,
 }
