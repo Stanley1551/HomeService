@@ -43,6 +43,17 @@ module.exports = {
         }
     },
 
+    isTokenValid: function(token, callback){
+        const dbOp = require('./DbOperations');
+        dbOp.wrapper.select({table: 'tokens', fields: ['token', 'validity'], where: {token: token, validity: 1}}, function(err, rows) {
+            if(rows.length > 0){
+                callback(true);
+            } else {
+                callback(false);
+            }
+        });
+    },
+
     grantTokenToUser: function(id){
         let token;
         const dbOp = require('./DbOperations');
@@ -65,7 +76,15 @@ module.exports = {
         }
 
         return token;
-    }
+    },
+
+    retrievePosts: function(maxNumber){
+        const dbOp = require('./DbOperations');
+        dbOp.wrapper.select({table: 'posts', limit: maxNumber, fields: ['userid', 'text', 'postedAt'],
+        order: 'postedAt desc'}, function(err, posts) {
+            return posts;
+        });
+    },
 }
 
 function generateGuidToken(){

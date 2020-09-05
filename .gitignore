@@ -112,7 +112,9 @@ dist
 .buildlog/
 .history
 .svn/
-
+*.db
+*.db-shm
+*.db-wal
 # IntelliJ related
 *.iml
 *.ipr
@@ -145,3 +147,5 @@ app.*.map.json
 
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+db.db-wal
+db.db-wal

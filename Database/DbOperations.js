@@ -1,4 +1,5 @@
 const db = require('better-sqlite3')('db.db');
+const sqlite = require('sqlite3-wrapper');
 
 module.exports = {
     /*tableExists : function(name) {
@@ -40,7 +41,14 @@ module.exports = {
         var cmdText = constructUpdateWhereCommand(table,map,whereExpression);
 
         return runCommand(cmdText);
-    }
+    },
+
+    //late sneaky lazy thing
+    /*wrapper: function (){
+        return sqlite.open('db.db');
+    },*/
+
+    wrapper: sqlite.open('db.db'),
 }
 
 function pragma(option){
