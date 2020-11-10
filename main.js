@@ -6,6 +6,7 @@ const port = 3000;
 dbState.initState();
 
 const app = express();
+app.disable('x-powered-by');
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded());
 

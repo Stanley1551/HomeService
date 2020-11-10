@@ -25,8 +25,13 @@ token: 7e59e919-b737-4c33-b475-97428929f7c7
 ###
 PUT http://localhost:3000/app/dashboard
 Content-Type: application/json
-token: 7e59e919-b737-4c33-b475-97428929f7c7
+token: 7e59e919-b737-4c33-b475-
 
 {
  "text": "elso post"
 }
+
+###
+GET http://localhost:3000/app/config
+Content-Type: application/json
+token: d810ea55-dc5e-4e0b-ad2d-1d724cc8132a
