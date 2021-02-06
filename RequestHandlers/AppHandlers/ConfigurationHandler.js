@@ -11,5 +11,12 @@ module.exports = {
             res.send(json);
 
         }catch(e){Logger.logger.error(e); res.status(500).send('Failed to retrieve config file.');}
+    },
+
+    getConfigurationName: function(key){
+        try{
+            let json = jsonfile.readFileSync(configFileName);
+            return json[key];
+        }catch(e){Logger.logger.error(e); return '';}
     }
 }
